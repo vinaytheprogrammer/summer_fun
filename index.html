@@ -217,7 +217,7 @@
     function decrement(module) {
     var count = document.getElementById("count" + module);
     var current = parseInt(count.innerText);
-    
+     count.innerText = current - 1; // Decrement by 1
     checkWinner();
     }
 

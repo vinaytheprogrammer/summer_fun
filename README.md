@@ -1,6 +1,3 @@
-Here is a sample README file for your Topper Counter project. This file includes unique concepts and features implemented in your project.
-
----
 
 # Topper Counter
 

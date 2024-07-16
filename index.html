@@ -1,252 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Topper Counter</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            color: #333;
-            font-family: Arial, sans-serif;
-        }
-        .module {
-            display: inline-block;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-            text-align: center;
-            width: 120px;
-            background-color: #fff;
-        }
-        button {
-            margin: 5px;
-            padding: 5px 10px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-        #congrats {
-           
-            /* position: fixed; */
-            top: 50%;
-            left: 50%;
-            /* transform: translate(-50%, -50%); */
-            background-color: #f0f0f0;
-            padding: 20px;
-            border: 1px solid #ccc;
-            /* z-index: 9999; */
-        }
-        .dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-        .dark-mode .module {
-            background-color: #444;
-            color: #fff;
-            border-color: #666;
-        }
-        .dark-mode button {
-            background-color: #666;
-            color: #fff;
-            border: 1px solid #666;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-        .dark-mode #congrats {
-            background-color: #333;
-            color: #fff;
-            border-color: #666;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Form</title>
+  <style>
+    body {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
 
-        #dark{
-            float : right;
-        }
+    h1 {
+      font-size: 3.2rem;
+      margin: 2rem auto;
+      animation: colorChange 5s infinite;
+    }
 
-        #image{
-            width: 28px;
-            height: 28px;
-            background-image: url("./black.png");
-            background-size: cover;
-        }
+    @keyframes colorChange {
+      0% { color: red; }
+      25% { color: blue; }
+      50% { color: green; }
+      75% { color: orange; }
+      100% { color: red; }
+    }
 
-        .dark-mode #image{
-            width: 28px;
-            height: 28px;
-            background-image: url("./images/sun.png");
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .dark-mode .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            /* background-color: #000000; */
-            border-radius: 5px;
-            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-            background-color: #333;
-            color: #fff;
-            border-color: #666;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-        ol {
-            padding-left: 20px;
-        }
-        .rule {
-            margin-bottom: 15px;
-        }
-        .rule-title {
-            font-weight: bold;
-            color: #333;
-        }
-        .rule-description {
-            color: #666;
-            margin-top: 5px;
-        }
-    </style>
+    iframe {
+      display: block;
+      margin: 1rem auto;
+      border: none;
+      width: 90%;
+      height: 100vh;
+      max-width: 440px;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 4rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      iframe {
+        width: 70%;
+        max-width: 700px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>Ek Idea Joh Badalde aapki placements</h1>
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSfTSYTGgVEDlvlLp8bbZHnYVN28I1Yx1Wvh6iIFVuYQd2oy5A/viewform?embedded=true"
+    width="640" height="820"
+  >Loading…</iframe>
 
-<nav> 
-    <button onclick="toggleDarkMode()" id = "dark"><img src = "./images/black.png" id = "image"> Dark Mode</button>
-</nav>
+  <audio id="sound" src="https://www.soundjay.com/transportation/sounds/train-pass-by-01.mp3" preload="auto"></audio>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var sound = document.getElementById('sound');
+      sound.play();
 
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
 
-    <div id="congrats">
-        <h2>Treat Kisko Chahiye, </h2>
-        <p id="winner"></p>
-        <!-- <button onclick="reset()">OK</button> -->
-    </div>
-    <div class="module">
-        <h3>Subrajeet</h3>
-        <button onclick="increment(1)">+</button>
-        <span id="count1">0</span>
-        <button onclick="decrement(1)">-</button>
-    </div>
-    <div class="module">
-        <h3>Vinay K.</h3>
-        <button onclick="increment(2)">+</button>
-        <span id="count2">0</span>
-        <button onclick="decrement(2)">-</button>
-    </div>
-    <div class="module">
-        <h3>Vishal</h3>
-        <button onclick="increment(3)">+</button>
-        <span id="count3">0</span>
-        <button onclick="decrement(3)">-</button>
-    </div>
-    <div class="module">
-        <h3>Vinay G.</h3>
-        <button onclick="increment(4)">+</button>
-        <span id="count4">0</span>
-        <button onclick="decrement(4)">-</button>
-    </div>
-    <div class="module">
-        <h3>Vipin</h3>
-        <button onclick="increment(5)">+</button>
-        <span id="count5">0</span>
-        <button onclick="decrement(5)">-</button>
-    </div>
-    <div class="module">
-        <h3>Sachin</h3>
-        <button onclick="increment(6)">+</button>
-        <span id="count6">0</span>
-        <button onclick="decrement(6)">-</button>
-    </div>
-    <div class="module">
-        <h3>Adarsh</h3>
-        <button onclick="increment(7)">+</button>
-        <span id="count7">0</span>
-        <button onclick="decrement(7)">-</button>
-    </div>
-    <div class="module">
-        <h3>Manish</h3>
-        <button onclick="increment(8)">+</button>
-        <span id="count8">0</span>
-        <button onclick="decrement(8)">-</button>
-    </div>
-    <div class="module">
-        <h3>Deepsen</h3>
-        <button onclick="increment(9)">+</button>
-        <span id="count9">0</span>
-        <button onclick="decrement(9)">-</button>
-    </div>
-    
-<br><br>
-<div class="container" id="notification">
-    <h1></h1>
-    <p>To participate, please follow the rules:</p>
-    <ol>
-        <li>Pay a fee of 10 rupees per event for treats.</li>
-        <li>Complete the daily 10-question assignment.</li>
-        <li>Ask 10 questions to others. Correct answers earn +4 points, incorrect answers result in -1 point.</li>
-        <li>Finalists will be remembered for future games.</li>
-    </ol>
-</div>     
-    
-    <script>
-
-
-    function increment(module) {
-    var count = document.getElementById("count" + module);
-    var current = parseInt(count.innerText);
-    count.innerText = current + 4; // Increment by 4
-    checkWinner();
-    }
-
-    function decrement(module) {
-    var count = document.getElementById("count" + module);
-    var current = parseInt(count.innerText);
-     count.innerText = current - 1; // Decrement by 1
-    checkWinner();
-    }
-
-    var module = ["nalla" ,"Subrajeet", "Vinay Kumar", "Vishal", "Vinay Gupta", "Vipin", "Sachin", "Adarsh", "Manish", "Deepsen",];
-
-    function checkWinner() {
-        var maxScore = 0;
-        for (var i = 1; i <= 9; i++) {
-            var count = parseInt(document.getElementById("count" + i).innerText);
-            maxScore = Math.max(maxScore, count);
-            if (count >= maxScore) {
-                document.getElementById("winner").innerText = module[i] + " Ko !";
-                           
-            }
-        }
-    }
-
-        function resetCounts() {
-            for (var i = 1; i <= 9; i++) {
-                document.getElementById("count" + i).innerText = "0";
-            }
-        }
-
-        
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
-    </script>
+      setTimeout(function() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
-
